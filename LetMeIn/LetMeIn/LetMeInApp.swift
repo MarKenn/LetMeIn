@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct LetMeInApp: App {
+    @State private var userSession = UserSession()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if userSession.isLoggedIn {
+                ContentView()
+                    .environment(userSession)
+            } else {
+                LoginView()
+                    .environment(userSession)
+            }
         }
     }
 }

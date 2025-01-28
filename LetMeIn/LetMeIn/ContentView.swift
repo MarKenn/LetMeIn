@@ -8,12 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(UserSession.self) private var userSession
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Welcome, world!")
+
+            Button(action: {
+                userSession.logout()
+            }) {
+                Text("Let Me Go")
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .background(.pink)
+            }
         }
         .padding()
     }

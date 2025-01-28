@@ -13,6 +13,15 @@
 		EF6C19512D48E7AA00ED61D4 /* LetMeInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C194C2D48E7AA00ED61D4 /* LetMeInApp.swift */; };
 		EF6C19542D48E7B300ED61D4 /* LetMeInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C19522D48E7B300ED61D4 /* LetMeInTests.swift */; };
 		EF6C195A2D48E90D00ED61D4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C19592D48E90D00ED61D4 /* LoginView.swift */; };
+		EF6C195C2D49270700ED61D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C195B2D4926FA00ED61D4 /* LoginViewModel.swift */; };
+		EF6C195F2D492A4200ED61D4 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C195E2D492A2800ED61D4 /* UserSession.swift */; };
+		EFA43A0A2D4948C50013D7A3 /* AuthenticationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A092D4948B60013D7A3 /* AuthenticationRepository.swift */; };
+		EFA43A0C2D494A530013D7A3 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A0B2D494A4B0013D7A3 /* AuthenticatedUser.swift */; };
+		EFA43A0F2D4955A70013D7A3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A0E2D4955980013D7A3 /* View+Extension.swift */; };
+		EFA43A122D495A190013D7A3 /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A112D4959FF0013D7A3 /* MockAPIService.swift */; };
+		EFA43A172D495DA30013D7A3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A162D495D9D0013D7A3 /* Constant.swift */; };
+		EFA43A1B2D4963180013D7A3 /* MockAPIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A1A2D4963060013D7A3 /* MockAPIUser.swift */; };
+		EFA43A1D2D4966100013D7A3 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A1C2D4966000013D7A3 /* UserDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +43,15 @@
 		EF6C194C2D48E7AA00ED61D4 /* LetMeInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetMeInApp.swift; sourceTree = "<group>"; };
 		EF6C19522D48E7B300ED61D4 /* LetMeInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetMeInTests.swift; sourceTree = "<group>"; };
 		EF6C19592D48E90D00ED61D4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		EF6C195B2D4926FA00ED61D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EF6C195E2D492A2800ED61D4 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		EFA43A092D4948B60013D7A3 /* AuthenticationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepository.swift; sourceTree = "<group>"; };
+		EFA43A0B2D494A4B0013D7A3 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
+		EFA43A0E2D4955980013D7A3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		EFA43A112D4959FF0013D7A3 /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
+		EFA43A162D495D9D0013D7A3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		EFA43A1A2D4963060013D7A3 /* MockAPIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIUser.swift; sourceTree = "<group>"; };
+		EFA43A1C2D4966000013D7A3 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +101,10 @@
 		EF6C194D2D48E7AA00ED61D4 /* LetMeIn */ = {
 			isa = PBXGroup;
 			children = (
+				EFA43A152D495D5F0013D7A3 /* Common */,
+				EFA43A102D4959800013D7A3 /* Services */,
+				EFA43A0D2D49558E0013D7A3 /* Extensions */,
+				EF6C195D2D492A2000ED61D4 /* Models */,
 				EF6C19552D48E8D800ED61D4 /* Modules */,
 				EF6C19492D48E7AA00ED61D4 /* Preview Content */,
 				EF6C194A2D48E7AA00ED61D4 /* Assets.xcassets */,
@@ -111,9 +133,46 @@
 		EF6C19562D48E8E900ED61D4 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				EFA43A092D4948B60013D7A3 /* AuthenticationRepository.swift */,
+				EF6C195B2D4926FA00ED61D4 /* LoginViewModel.swift */,
 				EF6C19592D48E90D00ED61D4 /* LoginView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		EF6C195D2D492A2000ED61D4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EFA43A1A2D4963060013D7A3 /* MockAPIUser.swift */,
+				EFA43A0B2D494A4B0013D7A3 /* AuthenticatedUser.swift */,
+				EF6C195E2D492A2800ED61D4 /* UserSession.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EFA43A0D2D49558E0013D7A3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EFA43A0E2D4955980013D7A3 /* View+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EFA43A102D4959800013D7A3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EFA43A1C2D4966000013D7A3 /* UserDataService.swift */,
+				EFA43A112D4959FF0013D7A3 /* MockAPIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EFA43A152D495D5F0013D7A3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EFA43A162D495D9D0013D7A3 /* Constant.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,9 +280,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF6C195C2D49270700ED61D4 /* LoginViewModel.swift in Sources */,
+				EFA43A1B2D4963180013D7A3 /* MockAPIUser.swift in Sources */,
+				EF6C195F2D492A4200ED61D4 /* UserSession.swift in Sources */,
+				EFA43A0F2D4955A70013D7A3 /* View+Extension.swift in Sources */,
 				EF6C195A2D48E90D00ED61D4 /* LoginView.swift in Sources */,
+				EFA43A0A2D4948C50013D7A3 /* AuthenticationRepository.swift in Sources */,
+				EFA43A1D2D4966100013D7A3 /* UserDataService.swift in Sources */,
 				EF6C19502D48E7AA00ED61D4 /* ContentView.swift in Sources */,
+				EFA43A122D495A190013D7A3 /* MockAPIService.swift in Sources */,
+				EFA43A172D495DA30013D7A3 /* Constant.swift in Sources */,
 				EF6C19512D48E7AA00ED61D4 /* LetMeInApp.swift in Sources */,
+				EFA43A0C2D494A530013D7A3 /* AuthenticatedUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +441,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LetMeIn/Preview Content\"";
+				DEVELOPMENT_TEAM = 64WRQPRMA9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -380,6 +449,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -401,6 +471,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LetMeIn/Preview Content\"";
+				DEVELOPMENT_TEAM = 64WRQPRMA9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -408,6 +479,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
