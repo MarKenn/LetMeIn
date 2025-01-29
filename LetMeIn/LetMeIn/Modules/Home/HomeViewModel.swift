@@ -25,8 +25,6 @@ extension HomeView {
         var password: String = ""
         var error: Error?
 
-        var didDeleteAccount: ((Bool) -> Void)?
-
         init(repository: HomeRepository =  InFileHomeRepository()) {
             self.repository = repository
         }

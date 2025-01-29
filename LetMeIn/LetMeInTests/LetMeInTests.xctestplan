@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "E21ED4DF-71A1-41BD-9901-04E13B4AB079",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:LetMeIn.xcodeproj",
+        "identifier" : "EF6C192A2D48E74400ED61D4",
+        "name" : "LetMeInTests"
+      }
+    }
+  ],
+  "version" : 1
+}

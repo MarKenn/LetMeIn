@@ -32,6 +32,9 @@
 		EFF8A5682D4A455D0027D59B /* InFileAuthenticationRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5672D4A45460027D59B /* InFileAuthenticationRepositoryTests.swift */; };
 		EFF8A56B2D4A550F0027D59B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A56A2D4A550A0027D59B /* HomeViewModel.swift */; };
 		EFF8A5702D4A55F60027D59B /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A56F2D4A55F20027D59B /* HomeRepository.swift */; };
+		EFF8A5732D4A94ED0027D59B /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5722D4A94E10027D59B /* HomeViewModelTests.swift */; };
+		EFF8A5762D4A958C0027D59B /* MockHomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5752D4A95840027D59B /* MockHomeRepository.swift */; };
+		EFF8A5782D4A99700027D59B /* InFileHomeRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5772D4A995A0027D59B /* InFileHomeRepositoryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,10 @@
 		EFF8A5672D4A45460027D59B /* InFileAuthenticationRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InFileAuthenticationRepositoryTests.swift; sourceTree = "<group>"; };
 		EFF8A56A2D4A550A0027D59B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		EFF8A56F2D4A55F20027D59B /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
+		EFF8A5722D4A94E10027D59B /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		EFF8A5752D4A95840027D59B /* MockHomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeRepository.swift; sourceTree = "<group>"; };
+		EFF8A5772D4A995A0027D59B /* InFileHomeRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InFileHomeRepositoryTests.swift; sourceTree = "<group>"; };
+		EFF8A5792D4A9C0B0027D59B /* LetMeInTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LetMeInTests.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +143,7 @@
 		EF6C19532D48E7B300ED61D4 /* LetMeInTests */ = {
 			isa = PBXGroup;
 			children = (
+				EFF8A5792D4A9C0B0027D59B /* LetMeInTests.xctestplan */,
 				EFF8A5632D4A43980027D59B /* CommonMocks */,
 				EFF8A55B2D4A341D0027D59B /* Modules */,
 			);
@@ -227,6 +235,7 @@
 		EFF8A55B2D4A341D0027D59B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EFF8A5712D4A94C70027D59B /* Home */,
 				EFF8A55C2D4A34270027D59B /* Login */,
 			);
 			path = Modules;
@@ -235,8 +244,8 @@
 		EFF8A55C2D4A34270027D59B /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				EFF8A5672D4A45460027D59B /* InFileAuthenticationRepositoryTests.swift */,
 				EFF8A5662D4A451C0027D59B /* Mocks */,
+				EFF8A5672D4A45460027D59B /* InFileAuthenticationRepositoryTests.swift */,
 				EFF8A55D2D4A34440027D59B /* LoginViewModelTests.swift */,
 			);
 			path = Login;
@@ -246,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				EFF8A5642D4A43CB0027D59B /* MockError.swift */,
+				EFF8A5612D4A368B0027D59B /* MockUserDataProvider.swift */,
 			);
 			path = CommonMocks;
 			sourceTree = "<group>";
@@ -253,7 +263,6 @@
 		EFF8A5662D4A451C0027D59B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				EFF8A5612D4A368B0027D59B /* MockUserDataProvider.swift */,
 				EFF8A55F2D4A34EA0027D59B /* MockAuthenticationRepository.swift */,
 			);
 			path = Mocks;
@@ -267,6 +276,24 @@
 				EF6C194B2D48E7AA00ED61D4 /* HomeView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		EFF8A5712D4A94C70027D59B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EFF8A5742D4A95610027D59B /* Mocks */,
+				EFF8A5772D4A995A0027D59B /* InFileHomeRepositoryTests.swift */,
+				EFF8A5722D4A94E10027D59B /* HomeViewModelTests.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EFF8A5742D4A95610027D59B /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				EFF8A5752D4A95840027D59B /* MockHomeRepository.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,11 +426,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFF8A5762D4A958C0027D59B /* MockHomeRepository.swift in Sources */,
 				EFF8A55E2D4A344B0027D59B /* LoginViewModelTests.swift in Sources */,
 				EFF8A5682D4A455D0027D59B /* InFileAuthenticationRepositoryTests.swift in Sources */,
 				EFF8A5652D4A43DA0027D59B /* MockError.swift in Sources */,
 				EFF8A5602D4A35010027D59B /* MockAuthenticationRepository.swift in Sources */,
+				EFF8A5782D4A99700027D59B /* InFileHomeRepositoryTests.swift in Sources */,
 				EFF8A5622D4A36950027D59B /* MockUserDataProvider.swift in Sources */,
+				EFF8A5732D4A94ED0027D59B /* HomeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
