@@ -40,7 +40,9 @@ extension LoginView {
         func login() async {
             handleResponse(await repository.login(username, password: password))
         }
-
+        
+        /// Handler for the result response from the repository
+        /// - Parameter response: A result type with an AuthenticatedUser on success, or an error
         func handleResponse(_ response: Result<AuthenticatedUser, Error>) {
             switch response {
             case .success(let authenticatedUser):

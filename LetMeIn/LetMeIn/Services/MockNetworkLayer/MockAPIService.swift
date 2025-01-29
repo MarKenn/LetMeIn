@@ -50,7 +50,10 @@ extension MockAPIService {
             return .failure(error)
         }
     }
-
+    
+    /// Reads the contents of URL using MockAPIUser
+    /// - Parameter url: URL pointing to the location of the file or resource
+    /// - Returns: An array of MockAPIUser
     private func fetchAll(_ url: URL) -> [MockAPIUser] {
         /// Fetch all users
         let usersResult: Result<[MockAPIUser], Error> = read(url)
@@ -63,7 +66,10 @@ extension MockAPIService {
 
         return []
     }
-
+    
+    /// Fetches a specific entry from file using AuthCredential properties
+    /// - Parameter endpoint: Should contain an AuthCredential body
+    /// - Returns: A result type with an encoded  MockAPIUser on success, or an error
     private func fetch<ModelType: Codable>(_ endpoint: MockAPIEndpoint) -> Result<ModelType, Error> {
         /// Check if we have an object
         /// Check if the object has a match
@@ -80,7 +86,10 @@ extension MockAPIService {
         ///Decode data to generic ModelType
         return encodeDataToResult(userData)
     }
-
+    
+    /// Writes an entry into the file using an endpoint
+    /// - Parameter endpoint: Should contain an AuthCredential body
+    /// - Returns: A result type with an encoded  MockAPIUser on success, or an error
     private func write<ModelType: Codable>(_ endpoint: MockAPIEndpoint) -> Result<ModelType, Error> {
         /// Check if we have an object to write
         guard let objectToWrite = endpoint.body as? AuthCredential else {
@@ -121,7 +130,10 @@ extension MockAPIService {
             return .failure(MockAPIError.cantCreateUser)
         }
     }
-
+    
+    /// Deletes an entry from the file using an endpoint
+    /// - Parameter endpoint: Should contain an AuthCredential body, and a `token` header
+    /// - Returns: A result type with an encoded  Bool on success, or an error
     private func delete<ModelType: Codable>(_ endpoint: MockAPIEndpoint) -> Result<ModelType, Error> {
         /// Check if we have required information  to delete the object
         guard let userCredential = endpoint.body as? AuthCredential,
@@ -165,7 +177,12 @@ extension MockAPIService {
             return .failure(error)
         }
     }
-
+    
+    /// Accepts a Data and converts it a Result using ModelType and customError
+    /// - Parameters:
+    ///   - data: Data to be convert
+    ///   - customError: custom error to use on failure
+    /// - Returns: A result type with a generic model type on success, or an error
     private func encodeDataToResult<ModelType: Codable>(_ data: Data, customError: Error? = nil) -> Result<ModelType, Error> {
         let decoder = JSONDecoder()
 
