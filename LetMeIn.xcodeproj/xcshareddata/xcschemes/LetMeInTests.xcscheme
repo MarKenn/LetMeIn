@@ -14,7 +14,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:LetMeInTests.xctestplan"
+            reference = "container:LetMeInTests/LetMeInTests.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

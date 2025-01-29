@@ -17,7 +17,7 @@ enum MockError: Error, LocalizedError {
         switch self {
         case .mockAuthenticationRepository: "Errors for MockAuthenticationRepository"
         case .mockUserDataProvider: "Errors for MockUserDataProvider"
-        case .mockUserDataProvider: "Errors for MockHomeRepository"
+        case .mockHomeRepository: "Errors for MockHomeRepository"
         default: "Mock error for tests"
         }
     }
