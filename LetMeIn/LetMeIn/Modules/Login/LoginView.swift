@@ -103,6 +103,18 @@ extension LoginView {
         guard viewModel.error != nil else { return }
         viewModel.error = nil
     }
+
+    func register() {
+        Task {
+            viewModel.register()
+        }
+    }
+
+    func login() {
+        Task {
+            viewModel.login()
+        }
+    }
 }
 
 #Preview {

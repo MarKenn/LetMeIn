@@ -15,8 +15,8 @@ protocol LoginViewModel {
 
     var didLogin: ((AuthenticatedUser) -> Void)? { get set }
 
-    func register()
-    func login()
+    func register() async
+    func login() async
 }
 
 extension LoginView {
@@ -33,16 +33,12 @@ extension LoginView {
             self.repository = repository
         }
 
-        func register() {
-            Task {
-                handleResponse(await repository.register(username, password: password))
-            }
+        func register() async {
+            handleResponse(await repository.register(username, password: password))
         }
 
-        func login() {
-            Task {
-                handleResponse(await repository.login(username, password: password))
-            }
+        func login() async {
+            handleResponse(await repository.login(username, password: password))
         }
 
         func handleResponse(_ response: Result<AuthenticatedUser, Error>) {
