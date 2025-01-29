@@ -11,7 +11,6 @@
 		EF6C194F2D48E7AA00ED61D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6C194A2D48E7AA00ED61D4 /* Assets.xcassets */; };
 		EF6C19502D48E7AA00ED61D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C194B2D48E7AA00ED61D4 /* ContentView.swift */; };
 		EF6C19512D48E7AA00ED61D4 /* LetMeInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C194C2D48E7AA00ED61D4 /* LetMeInApp.swift */; };
-		EF6C19542D48E7B300ED61D4 /* LetMeInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C19522D48E7B300ED61D4 /* LetMeInTests.swift */; };
 		EF6C195A2D48E90D00ED61D4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C19592D48E90D00ED61D4 /* LoginView.swift */; };
 		EF6C195C2D49270700ED61D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C195B2D4926FA00ED61D4 /* LoginViewModel.swift */; };
 		EF6C195F2D492A4200ED61D4 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C195E2D492A2800ED61D4 /* UserSession.swift */; };
@@ -29,6 +28,8 @@
 		EFF8A55E2D4A344B0027D59B /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A55D2D4A34440027D59B /* LoginViewModelTests.swift */; };
 		EFF8A5602D4A35010027D59B /* MockAuthenticationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A55F2D4A34EA0027D59B /* MockAuthenticationRepository.swift */; };
 		EFF8A5622D4A36950027D59B /* MockUserDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5612D4A368B0027D59B /* MockUserDataProvider.swift */; };
+		EFF8A5652D4A43DA0027D59B /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5642D4A43CB0027D59B /* MockError.swift */; };
+		EFF8A5682D4A455D0027D59B /* InFileAuthenticationRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5672D4A45460027D59B /* InFileAuthenticationRepositoryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +49,6 @@
 		EF6C194A2D48E7AA00ED61D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF6C194B2D48E7AA00ED61D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EF6C194C2D48E7AA00ED61D4 /* LetMeInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetMeInApp.swift; sourceTree = "<group>"; };
-		EF6C19522D48E7B300ED61D4 /* LetMeInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetMeInTests.swift; sourceTree = "<group>"; };
 		EF6C19592D48E90D00ED61D4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EF6C195B2D4926FA00ED61D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EF6C195E2D492A2800ED61D4 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -66,6 +66,8 @@
 		EFF8A55D2D4A34440027D59B /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		EFF8A55F2D4A34EA0027D59B /* MockAuthenticationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationRepository.swift; sourceTree = "<group>"; };
 		EFF8A5612D4A368B0027D59B /* MockUserDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDataProvider.swift; sourceTree = "<group>"; };
+		EFF8A5642D4A43CB0027D59B /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
+		EFF8A5672D4A45460027D59B /* InFileAuthenticationRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InFileAuthenticationRepositoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		EF6C19532D48E7B300ED61D4 /* LetMeInTests */ = {
 			isa = PBXGroup;
 			children = (
+				EFF8A5632D4A43980027D59B /* CommonMocks */,
 				EFF8A55B2D4A341D0027D59B /* Modules */,
 			);
 			path = LetMeInTests;
@@ -228,12 +231,28 @@
 		EFF8A55C2D4A34270027D59B /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				EFF8A5612D4A368B0027D59B /* MockUserDataProvider.swift */,
-				EFF8A55F2D4A34EA0027D59B /* MockAuthenticationRepository.swift */,
+				EFF8A5672D4A45460027D59B /* InFileAuthenticationRepositoryTests.swift */,
+				EFF8A5662D4A451C0027D59B /* Mocks */,
 				EFF8A55D2D4A34440027D59B /* LoginViewModelTests.swift */,
-				EF6C19522D48E7B300ED61D4 /* LetMeInTests.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		EFF8A5632D4A43980027D59B /* CommonMocks */ = {
+			isa = PBXGroup;
+			children = (
+				EFF8A5642D4A43CB0027D59B /* MockError.swift */,
+			);
+			path = CommonMocks;
+			sourceTree = "<group>";
+		};
+		EFF8A5662D4A451C0027D59B /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				EFF8A5612D4A368B0027D59B /* MockUserDataProvider.swift */,
+				EFF8A55F2D4A34EA0027D59B /* MockAuthenticationRepository.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,8 +384,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFF8A55E2D4A344B0027D59B /* LoginViewModelTests.swift in Sources */,
+				EFF8A5682D4A455D0027D59B /* InFileAuthenticationRepositoryTests.swift in Sources */,
+				EFF8A5652D4A43DA0027D59B /* MockError.swift in Sources */,
 				EFF8A5602D4A35010027D59B /* MockAuthenticationRepository.swift in Sources */,
-				EF6C19542D48E7B300ED61D4 /* LetMeInTests.swift in Sources */,
 				EFF8A5622D4A36950027D59B /* MockUserDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -59,9 +59,9 @@ struct LoginView: View {
 
                 Button(action: {
                     if isSignup {
-                        viewModel.register()
+                        register()
                     } else {
-                        viewModel.login()
+                        login()
                     }
                 }) {
                     Text( isSignup ? "Sign Me Up" : "Let Me In")
@@ -106,13 +106,13 @@ extension LoginView {
 
     func register() {
         Task {
-            viewModel.register()
+            await viewModel.register()
         }
     }
 
     func login() {
         Task {
-            viewModel.login()
+            await viewModel.login()
         }
     }
 }

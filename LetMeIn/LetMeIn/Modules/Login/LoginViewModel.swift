@@ -42,10 +42,25 @@ extension LoginView {
         }
 
         func handleResponse(_ response: Result<AuthenticatedUser, Error>) {
-            if case .success(let authenticatedUser) = response {
-                didLogin?(authenticatedUser)
-            } else if case .failure(let error) = response {
+            switch response {
+            case .success(let authenticatedUser):
+                guard let didLogin else {
+                    self.error = LoginViewError.didLoginClosureMissing
+                    return
+                }
+                didLogin(authenticatedUser)
+            case .failure(let error):
                 self.error = error
+            }
+        }
+    }
+
+    enum LoginViewError: Error, LocalizedError {
+        case didLoginClosureMissing
+
+        public var errorDescription: String? {
+            switch self {
+            case .didLoginClosureMissing: "Missing closure didLogin: ((AuthenticatedUser) -> Void)?"
             }
         }
     }

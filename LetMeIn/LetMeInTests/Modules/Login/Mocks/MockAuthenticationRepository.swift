@@ -8,6 +8,10 @@
 @testable import LetMeIn
 
 class MockAuthenticationRepository: AuthenticationRepository {
+    var didCallRegister = false
+    var didCallLogin = false
+    var shouldSucceed: Bool = true
+
     var userDataProvider: UserDataProvider
 
     init(userDataProvider: UserDataProvider = MockUserDataProvider()) {
@@ -15,10 +19,18 @@ class MockAuthenticationRepository: AuthenticationRepository {
     }
 
     func login(_ username: String, password: String) async -> Result<AuthenticatedUser, Error> {
-        await userDataProvider.login(username, password: password)
+        didCallLogin = true
+
+        return shouldSucceed
+        ? .success(AuthenticatedUser(token: password, username: username))
+        : .failure(MockError.mockAuthenticationRepository)
     }
 
     func register(_ username: String, password: String) async -> Result<AuthenticatedUser, Error> {
-        return await userDataProvider.register(username, password: password)
+        didCallRegister = true
+        
+        return shouldSucceed
+        ? .success(AuthenticatedUser(token: password, username: username))
+        : .failure(MockError.mockAuthenticationRepository)
     }
 }

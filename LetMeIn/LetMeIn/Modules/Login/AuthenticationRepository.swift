@@ -26,6 +26,6 @@ class InFileAuthenticationRepository: AuthenticationRepository {
     }
 
     func register(_ username: String, password: String) async -> Result<AuthenticatedUser, Error> {
-        return await userDataProvider.register(username, password: password)
+        await userDataProvider.register(username, password: password)
     }
 }
