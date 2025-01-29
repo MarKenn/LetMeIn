@@ -9,7 +9,6 @@ import Foundation
 
 struct Constant {
     static var apiBaseURL: URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
 }

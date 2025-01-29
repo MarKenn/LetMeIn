@@ -59,9 +59,9 @@ struct LoginView: View {
 
                 Button(action: {
                     if isSignup {
-                        viewModel.requestSignup()
+                        viewModel.register()
                     } else {
-                        viewModel.requestLogin()
+                        viewModel.login()
                     }
                 }) {
                     Text( isSignup ? "Sign Me Up" : "Let Me In")
@@ -85,9 +85,9 @@ struct LoginView: View {
                     .frame(height: 60)
             }
         }
-        .onChange(of: viewModel.username) { viewModel.error = nil }
-        .onChange(of: viewModel.password) { viewModel.error = nil }
-        .onChange(of: isSignup) { viewModel.error = nil }
+        .onChange(of: viewModel.username) { resetError() }
+        .onChange(of: viewModel.password) { resetError() }
+        .onChange(of: isSignup) { resetError() }
         .onAppear {
             viewModel.didLogin = { authenticatedUser in
 
@@ -95,6 +95,13 @@ struct LoginView: View {
                 self.userSession.login(authenticatedUser)
             }
         }
+    }
+}
+
+extension LoginView {
+    func resetError() {
+        guard viewModel.error != nil else { return }
+        viewModel.error = nil
     }
 }
 

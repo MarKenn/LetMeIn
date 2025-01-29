@@ -6,7 +6,7 @@
 //
 
 struct MockAPIUser: Codable {
+    let token: String
     let username: String
     let password: String
-    let token: String
 }

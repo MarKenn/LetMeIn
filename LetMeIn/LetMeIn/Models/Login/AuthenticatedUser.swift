@@ -5,7 +5,7 @@
 //  Created by Mark Kenneth Bayona on 1/29/25.
 //
 
-struct AuthenticatedUser : Decodable {
-    var username: String
+struct AuthenticatedUser: Codable {
     var token: String
+    var username: String
 }

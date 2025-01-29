@@ -10,12 +10,13 @@ import Foundation
 protocol LoginViewModel {
     var username: String { get set }
     var password: String { get set }
-    var error: MockAPIError? { get set }
+    var error: Error? { get set }
+    var repository: AuthenticationRepository { get set }
 
     var didLogin: ((AuthenticatedUser) -> Void)? { get set }
 
-    func requestSignup()
-    func requestLogin()
+    func register()
+    func login()
 }
 
 extension LoginView {
@@ -26,25 +27,25 @@ extension LoginView {
         var username: String = ""
         var password: String = ""
         var didLogin: ((AuthenticatedUser) -> Void)?
-        var error: MockAPIError?
+        var error: Error?
 
         init(repository: AuthenticationRepository =  InFileAuthenticationRepository()) {
             self.repository = repository
         }
 
-        func requestSignup() {
+        func register() {
             Task {
-                handleResponse(await repository.createUser(username, password: password))
+                handleResponse(await repository.register(username, password: password))
             }
         }
 
-        func requestLogin() {
+        func login() {
             Task {
                 handleResponse(await repository.login(username, password: password))
             }
         }
 
-        func handleResponse(_ response: Result<AuthenticatedUser, MockAPIError>) {
+        func handleResponse(_ response: Result<AuthenticatedUser, Error>) {
             if case .success(let authenticatedUser) = response {
                 didLogin?(authenticatedUser)
             } else if case .failure(let error) = response {
