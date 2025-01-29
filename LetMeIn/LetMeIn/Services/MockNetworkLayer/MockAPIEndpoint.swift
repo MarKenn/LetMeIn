@@ -10,6 +10,7 @@ import Foundation
 enum MockMethod: String {
     case read
     case write
+    case delete
 }
 
 protocol MockAPIEndpoint {

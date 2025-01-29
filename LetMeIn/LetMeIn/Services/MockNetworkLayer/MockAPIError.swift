@@ -9,7 +9,7 @@ import Foundation
 
 enum MockAPIError: Error {
     case userNotFound, invalidCredentials, userAlreadyExists, cantCreateUser, cantDecodeResponse,
-    unknownError
+         incorrectPasswordOrAccess, unknownError
 }
 
 extension MockAPIError: LocalizedError {
@@ -17,6 +17,7 @@ extension MockAPIError: LocalizedError {
         switch self {
         case .userAlreadyExists: return "User already exists"
         case .cantCreateUser: return "Can't create user"
+        case .incorrectPasswordOrAccess: return "Incorrect password or access"
         case .cantDecodeResponse: fallthrough
         case .userNotFound: fallthrough
         case .invalidCredentials:

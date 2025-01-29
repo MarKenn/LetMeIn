@@ -64,7 +64,7 @@ struct LoginView: View {
                         login()
                     }
                 }) {
-                    Text( isSignup ? "Sign Me Up" : "Let Me In")
+                    Text( isSignup ? "Sign me up" : "Let me in")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)

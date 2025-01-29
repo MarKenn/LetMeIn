@@ -14,7 +14,7 @@ struct LetMeInApp: App {
     var body: some Scene {
         WindowGroup {
             if userSession.isLoggedIn {
-                ContentView()
+                HomeView()
                     .environment(userSession)
             } else {
                 LoginView()

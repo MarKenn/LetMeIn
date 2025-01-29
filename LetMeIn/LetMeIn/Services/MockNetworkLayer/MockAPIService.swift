@@ -19,6 +19,8 @@ extension MockAPIService {
             response = fetch(endpoint)
         case .write:
             response = write(endpoint)
+        case .delete:
+            response = delete(endpoint)
         }
 
         switch response {
@@ -32,6 +34,9 @@ extension MockAPIService {
 
 // MARK: - MOCK NETWORK REQUEST
 extension MockAPIService {
+    /// Reads the contents of URL
+    /// - Parameter url: URL pointing to the location of the file or resource
+    /// - Returns: A result type with a generic model type on success, or an error
     private func read<ModelType: Codable>(_ url: URL) -> Result<ModelType, Error> {
         let decoder = JSONDecoder()
 
@@ -50,7 +55,6 @@ extension MockAPIService {
         /// Fetch all users
         let usersResult: Result<[MockAPIUser], Error> = read(url)
 
-        print("fetchAll")
         /// Check if object already exiss
         if case .success(let objects) = usersResult {
             print(objects)
@@ -87,8 +91,10 @@ extension MockAPIService {
         var users: [MockAPIUser] = fetchAll(endpoint.baseURL)
 
         /// Check if object already exiss
-        let objectExists: MockAPIUser? = users.first(where: { $0.username == objectToWrite.username })
-        guard objectExists == nil else {
+        let objectExists: Bool = users.first(where: {
+            $0.username == objectToWrite.username
+        }) != nil
+        guard !objectExists else {
             return .failure(MockAPIError.userAlreadyExists)
         }
 
@@ -116,7 +122,51 @@ extension MockAPIService {
         }
     }
 
-    private func encodeDataToResult<ModelType: Codable>(_ data: Data) -> Result<ModelType, Error> {
+    private func delete<ModelType: Codable>(_ endpoint: MockAPIEndpoint) -> Result<ModelType, Error> {
+        /// Check if we have required information  to delete the object
+        guard let userCredential = endpoint.body as? AuthCredential,
+              let token = endpoint.headers?["token"] else {
+            return .failure(MockAPIError.invalidCredentials)
+        }
+
+        /// Fetch all users
+        var users: [MockAPIUser] = fetchAll(endpoint.baseURL)
+
+        /// Check if object  exist
+        let objectExists: Bool = users.first(where: {
+            $0.username == userCredential.username
+            && $0.password == userCredential.password
+            && $0.token == token
+        }) != nil
+        guard objectExists else {
+            return .failure(MockAPIError.incorrectPasswordOrAccess)
+        }
+
+        /// Remove item
+        users.removeAll {
+            $0.username == userCredential.username
+            && $0.password == userCredential.password
+            && $0.token == token
+        }
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+
+        do {
+            /// Write array of users to file
+            let data = try encoder.encode(users)
+            try data.write(to: endpoint.baseURL)
+
+            let resultData = try JSONEncoder().encode(objectExists)
+
+            return encodeDataToResult(resultData, customError: MockAPIError.userNotFound)
+        } catch {
+            print("Failed to write JSON data: \(error.localizedDescription)")
+            return .failure(error)
+        }
+    }
+
+    private func encodeDataToResult<ModelType: Codable>(_ data: Data, customError: Error? = nil) -> Result<ModelType, Error> {
         let decoder = JSONDecoder()
 
         do {
@@ -124,7 +174,7 @@ extension MockAPIService {
             return .success(responseObject)
         } catch {
             print("Failed to write JSON data: \(error.localizedDescription)")
-            return .failure(MockAPIError.cantCreateUser)
+            return .failure(customError ?? MockAPIError.cantCreateUser)
         }
     }
 }

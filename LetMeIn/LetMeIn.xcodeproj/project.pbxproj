@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		EF6C194E2D48E7AA00ED61D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6C19482D48E7AA00ED61D4 /* Preview Assets.xcassets */; };
 		EF6C194F2D48E7AA00ED61D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6C194A2D48E7AA00ED61D4 /* Assets.xcassets */; };
-		EF6C19502D48E7AA00ED61D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C194B2D48E7AA00ED61D4 /* ContentView.swift */; };
+		EF6C19502D48E7AA00ED61D4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C194B2D48E7AA00ED61D4 /* HomeView.swift */; };
 		EF6C19512D48E7AA00ED61D4 /* LetMeInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C194C2D48E7AA00ED61D4 /* LetMeInApp.swift */; };
 		EF6C195A2D48E90D00ED61D4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C19592D48E90D00ED61D4 /* LoginView.swift */; };
 		EF6C195C2D49270700ED61D4 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C195B2D4926FA00ED61D4 /* LoginViewModel.swift */; };
@@ -30,6 +30,8 @@
 		EFF8A5622D4A36950027D59B /* MockUserDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5612D4A368B0027D59B /* MockUserDataProvider.swift */; };
 		EFF8A5652D4A43DA0027D59B /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5642D4A43CB0027D59B /* MockError.swift */; };
 		EFF8A5682D4A455D0027D59B /* InFileAuthenticationRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5672D4A45460027D59B /* InFileAuthenticationRepositoryTests.swift */; };
+		EFF8A56B2D4A550F0027D59B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A56A2D4A550A0027D59B /* HomeViewModel.swift */; };
+		EFF8A5702D4A55F60027D59B /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A56F2D4A55F20027D59B /* HomeRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +49,7 @@
 		EF6C192B2D48E74400ED61D4 /* LetMeInTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LetMeInTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6C19482D48E7AA00ED61D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EF6C194A2D48E7AA00ED61D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EF6C194B2D48E7AA00ED61D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EF6C194B2D48E7AA00ED61D4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EF6C194C2D48E7AA00ED61D4 /* LetMeInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetMeInApp.swift; sourceTree = "<group>"; };
 		EF6C19592D48E90D00ED61D4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EF6C195B2D4926FA00ED61D4 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -68,6 +70,8 @@
 		EFF8A5612D4A368B0027D59B /* MockUserDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDataProvider.swift; sourceTree = "<group>"; };
 		EFF8A5642D4A43CB0027D59B /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
 		EFF8A5672D4A45460027D59B /* InFileAuthenticationRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InFileAuthenticationRepositoryTests.swift; sourceTree = "<group>"; };
+		EFF8A56A2D4A550A0027D59B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		EFF8A56F2D4A55F20027D59B /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +128,6 @@
 				EF6C19552D48E8D800ED61D4 /* Modules */,
 				EF6C19492D48E7AA00ED61D4 /* Preview Content */,
 				EF6C194A2D48E7AA00ED61D4 /* Assets.xcassets */,
-				EF6C194B2D48E7AA00ED61D4 /* ContentView.swift */,
 				EF6C194C2D48E7AA00ED61D4 /* LetMeInApp.swift */,
 			);
 			path = LetMeIn;
@@ -142,6 +145,7 @@
 		EF6C19552D48E8D800ED61D4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EFF8A5692D4A54E50027D59B /* Home */,
 				EF6C19562D48E8E900ED61D4 /* Login */,
 			);
 			path = Modules;
@@ -255,6 +259,16 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		EFF8A5692D4A54E50027D59B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EFF8A56F2D4A55F20027D59B /* HomeRepository.swift */,
+				EFF8A56A2D4A550A0027D59B /* HomeViewModel.swift */,
+				EF6C194B2D48E7AA00ED61D4 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -360,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFF8A56B2D4A550F0027D59B /* HomeViewModel.swift in Sources */,
 				EFF8A5532D4A0ADF0027D59B /* MockUserEndpoint.swift in Sources */,
 				EF6C195C2D49270700ED61D4 /* LoginViewModel.swift in Sources */,
 				EFA43A1B2D4963180013D7A3 /* MockAPIUser.swift in Sources */,
@@ -369,12 +384,13 @@
 				EFA43A0A2D4948C50013D7A3 /* AuthenticationRepository.swift in Sources */,
 				EFA43A1D2D4966100013D7A3 /* UserDataService.swift in Sources */,
 				EFF8A5512D4A098B0027D59B /* MockAPIEndpoint.swift in Sources */,
-				EF6C19502D48E7AA00ED61D4 /* ContentView.swift in Sources */,
+				EF6C19502D48E7AA00ED61D4 /* HomeView.swift in Sources */,
 				EFF8A54F2D4A096C0027D59B /* MockAPIService.swift in Sources */,
 				EFF8A5582D4A31A20027D59B /* MockAPIError.swift in Sources */,
 				EFF8A5552D4A0C3A0027D59B /* AuthCredential.swift in Sources */,
 				EFA43A172D495DA30013D7A3 /* Constant.swift in Sources */,
 				EF6C19512D48E7AA00ED61D4 /* LetMeInApp.swift in Sources */,
+				EFF8A5702D4A55F60027D59B /* HomeRepository.swift in Sources */,
 				EFA43A0C2D494A530013D7A3 /* AuthenticatedUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

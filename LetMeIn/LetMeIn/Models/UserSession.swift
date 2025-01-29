@@ -9,7 +9,7 @@ import Foundation
 
 @Observable
 class UserSession {
-    private var user: AuthenticatedUser?
+    private(set) var user: AuthenticatedUser?
     var isLoggedIn: Bool { user != nil }
 
     func login(_ user: AuthenticatedUser) {

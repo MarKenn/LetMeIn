@@ -8,10 +8,10 @@
 import Foundation
 
 protocol LoginViewModel {
+    var repository: AuthenticationRepository { get set }
     var username: String { get set }
     var password: String { get set }
     var error: Error? { get set }
-    var repository: AuthenticationRepository { get set }
 
     var didLogin: ((AuthenticatedUser) -> Void)? { get set }
 
