@@ -8,9 +8,11 @@
 import Foundation
 
 protocol HomeRepository {
+    typealias Result = Swift.Result<Bool, Error>
+
     var userDataProvider: UserDataProvider { get set }
 
-    func delete(_ authenticatedUser: AuthenticatedUser, password: String) async -> Result<Bool, Error>
+    func delete(_ authenticatedUser: AuthenticatedUser, password: String) async -> Result
 }
 
 class InFileHomeRepository: HomeRepository {
@@ -20,7 +22,7 @@ class InFileHomeRepository: HomeRepository {
         self.userDataProvider = userDataProvider
     }
 
-    func delete(_ authenticatedUser: AuthenticatedUser, password: String) async -> Result<Bool, any Error> {
+    func delete(_ authenticatedUser: AuthenticatedUser, password: String) async -> HomeRepository.Result {
         await userDataProvider.delete(authenticatedUser, password: password)
     }
 }
