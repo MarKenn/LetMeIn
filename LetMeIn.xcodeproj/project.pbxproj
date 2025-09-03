@@ -20,6 +20,7 @@
 		EFA43A172D495DA30013D7A3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A162D495D9D0013D7A3 /* Constant.swift */; };
 		EFA43A1B2D4963180013D7A3 /* MockAPIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A1A2D4963060013D7A3 /* MockAPIUser.swift */; };
 		EFA43A1D2D4966100013D7A3 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA43A1C2D4966000013D7A3 /* UserDataService.swift */; };
+		EFBDFC752E684D600083C375 /* PasswordFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDFC742E684D600083C375 /* PasswordFieldView.swift */; };
 		EFF8A54F2D4A096C0027D59B /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A54E2D4A09640027D59B /* MockAPIService.swift */; };
 		EFF8A5512D4A098B0027D59B /* MockAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5502D4A09870027D59B /* MockAPIEndpoint.swift */; };
 		EFF8A5532D4A0ADF0027D59B /* MockUserEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF8A5522D4A0AD90027D59B /* MockUserEndpoint.swift */; };
@@ -63,6 +64,7 @@
 		EFA43A162D495D9D0013D7A3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		EFA43A1A2D4963060013D7A3 /* MockAPIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIUser.swift; sourceTree = "<group>"; };
 		EFA43A1C2D4966000013D7A3 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
+		EFBDFC742E684D600083C375 /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
 		EFF8A54E2D4A09640027D59B /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
 		EFF8A5502D4A09870027D59B /* MockAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIEndpoint.swift; sourceTree = "<group>"; };
 		EFF8A5522D4A0AD90027D59B /* MockUserEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserEndpoint.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		EF6C19552D48E8D800ED61D4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EFBDFC722E684D3E0083C375 /* Shared */,
 				EFF8A5692D4A54E50027D59B /* Home */,
 				EF6C19562D48E8E900ED61D4 /* Login */,
 			);
@@ -202,6 +205,22 @@
 				EFA43A162D495D9D0013D7A3 /* Constant.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		EFBDFC722E684D3E0083C375 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				EFBDFC732E684D460083C375 /* Views */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		EFBDFC732E684D460083C375 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EFBDFC742E684D600083C375 /* PasswordFieldView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		EFF8A5562D4A317E0027D59B /* MockNetworkLayer */ = {
@@ -411,6 +430,7 @@
 				EFA43A0A2D4948C50013D7A3 /* AuthenticationRepository.swift in Sources */,
 				EFA43A1D2D4966100013D7A3 /* UserDataService.swift in Sources */,
 				EFF8A5512D4A098B0027D59B /* MockAPIEndpoint.swift in Sources */,
+				EFBDFC752E684D600083C375 /* PasswordFieldView.swift in Sources */,
 				EF6C19502D48E7AA00ED61D4 /* HomeView.swift in Sources */,
 				EFF8A54F2D4A096C0027D59B /* MockAPIService.swift in Sources */,
 				EFF8A5582D4A31A20027D59B /* MockAPIError.swift in Sources */,

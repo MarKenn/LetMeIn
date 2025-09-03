@@ -11,7 +11,7 @@ struct HomeView: View {
     @Environment(UserSession.self) private var userSession
 
     @State private var viewModel: HomeViewModel = Model()
-    @State private var isDeleting: Bool = false
+    @State private var isDeleting: Bool = true
     @State private var showPassword: Bool = false
 
     var content: String {
@@ -41,31 +41,7 @@ struct HomeView: View {
 
 
                 if isDeleting {
-                    Group {
-                        HStack {
-                            Image(systemName: "lock")
-                                .foregroundColor(.gray)
-
-                            Group {
-                                if showPassword {
-                                    TextField("Enter password", text: $viewModel.password)
-                                } else {
-                                    SecureField("Enter password", text: $viewModel.password)
-                                }
-                            }
-                            .padding(.leading, 5)
-
-                            Button(
-                                action: { showPassword.toggle() },
-                                label: {
-                                    Image(systemName: showPassword ? "eye.slash" : "eye.fill")
-                                        .foregroundColor(.gray)
-                                }
-                            )
-                        }
-                    }
-                    .padding()
-                    .background(Color(.systemGray6))
+                    PasswordFieldView(text: $viewModel.password)
 
                     if let error = viewModel.error {
                         Text("\(error.localizedDescription)")

@@ -17,39 +17,17 @@ struct LoginView: View {
     var body: some View {
         VStack {
             VStack {
-                Group {
-                    HStack {
-                        Image(systemName: "person")
-                            .foregroundColor(.gray)
+                HStack {
+                    Image(systemName: "person")
+                        .foregroundColor(.gray)
 
-                        TextField("Enter username", text: $viewModel.username)
-                            .padding(.leading, 5)
-                    }
-
-                    HStack {
-                        Image(systemName: "lock")
-                            .foregroundColor(.gray)
-
-                        Group {
-                            if showPassword {
-                                TextField("Enter username", text: $viewModel.password)
-                            } else {
-                                SecureField("Enter password", text: $viewModel.password)
-                            }
-                        }
+                    TextField("Enter username", text: $viewModel.username)
                         .padding(.leading, 5)
-
-                        Button(
-                            action: { showPassword.toggle() },
-                            label: {
-                                Image(systemName: showPassword ? "eye.slash" : "eye.fill")
-                                    .foregroundColor(.gray)
-                            }
-                        )
-                    }
                 }
                 .padding()
                 .background(Color(.systemGray6))
+
+                PasswordFieldView(text: $viewModel.password)
 
                 if let error = viewModel.error {
                     Text("\(error.localizedDescription)")
