@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+
+    runs-on: macos-15
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_16.4.app
+
+    - name: Build And Test
+      run: >
+        xcodebuild clean build test
+        -project LetMeIn.xcodeproj
+        -scheme "LetMeIn"
+        CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+        -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
+        -parallel-testing-enabled YES
+        -resultBundlePath TestResults-${{ github.run_number }}.xcresult
+
+    - name: Upload xcresult file
+      uses: actions/upload-artifact@v4
+      if: ${{ failure() }}
+      with:
+        name: TestResults-${{ github.run_number }}.xcresult
+        path: TestResults-${{ github.run_number }}.xcresult
