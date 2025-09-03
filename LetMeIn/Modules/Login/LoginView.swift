@@ -14,18 +14,27 @@ struct LoginView: View {
     @State private var showPassword: Bool = false
     @State private var isSignup: Bool = false
 
+    var mainBtnTitle: String { isSignup ? "Sign me up" : "Let me in" }
+    var mainBtnBackgroundColor: Color { isSignup ? .blue : .mint }
+    var secondaryBtnTitle: String { isSignup ? "Have an existing account?" : "Create new account?" }
+    var secondaryBtnForegroundColor: Color { isSignup ? .mint : .blue }
+
+    var usernameFieldView: some View {
+        HStack {
+            Image(systemName: "person")
+                .foregroundColor(.gray)
+
+            TextField("Enter username", text: $viewModel.username)
+                .padding(.leading, 5)
+        }
+        .padding()
+        .background(Color(.systemGray6))
+    }
+
     var body: some View {
         VStack {
             VStack {
-                HStack {
-                    Image(systemName: "person")
-                        .foregroundColor(.gray)
-
-                    TextField("Enter username", text: $viewModel.username)
-                        .padding(.leading, 5)
-                }
-                .padding()
-                .background(Color(.systemGray6))
+                usernameFieldView
 
                 PasswordFieldView(text: $viewModel.password)
 
@@ -36,27 +45,21 @@ struct LoginView: View {
                 }
 
                 BasicButtonView(
-                    text: isSignup ? "Sign me up" : "Let me in",
+                    text: mainBtnTitle,
                     foregroundColor: .white,
-                    backgroundColor: isSignup ? .blue : .mint
-                ) {
-                    if isSignup {
-                        register()
-                    } else {
-                        login()
-                    }
-                }
+                    backgroundColor: mainBtnBackgroundColor,
+                    action: mainButtonAction
+                )
             }
             .cornerRadius(10)
             .padding(.horizontal, 20)
 
             BasicButtonView(
-                text: isSignup ? "Have an existing account?" : "Create new account?",
-                foregroundColor: isSignup ? .mint : .blue,
-                backgroundColor: .clear
-            ) {
-                isSignup.toggle()
-            }
+                text: secondaryBtnTitle,
+                foregroundColor: secondaryBtnForegroundColor,
+                backgroundColor: .clear,
+                action: { isSignup.toggle() }
+            )
         }
         .onChange(of: viewModel.username) { resetError() }
         .onChange(of: viewModel.password) { resetError() }
@@ -77,15 +80,9 @@ extension LoginView {
         viewModel.error = nil
     }
 
-    func register() {
+    func mainButtonAction() {
         Task {
-            await viewModel.register()
-        }
-    }
-
-    func login() {
-        Task {
-            await viewModel.login()
+            await isSignup ? viewModel.register() : viewModel.login()
         }
     }
 }
