@@ -15,7 +15,7 @@ The core functionality  of the app is to have a login page which accepts a usern
 ### Create new account?
 
  - Added a button on the login page to show a signup form
- - Sign up simply saves the credentials, which can be used on the login page
+ - Sign up simulates the request to an API by saving locally, credentials can then be used on the login page
  - Has a `Have an existing account?` button to go back to the login page
    
 |  |  | 
