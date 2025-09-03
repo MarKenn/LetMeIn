@@ -35,32 +35,27 @@ struct LoginView: View {
                         .padding(.vertical, 10)
                 }
 
-                Button(action: {
+                BasicButtonView(
+                    text: isSignup ? "Sign me up" : "Let me in",
+                    foregroundColor: .white,
+                    backgroundColor: isSignup ? .blue : .mint
+                ) {
                     if isSignup {
                         register()
                     } else {
                         login()
                     }
-                }) {
-                    Text( isSignup ? "Sign me up" : "Let me in")
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 60)
-                        .background(isSignup ? .blue : .mint)
                 }
             }
             .cornerRadius(10)
             .padding(.horizontal, 20)
 
-            Button(action: {
+            BasicButtonView(
+                text: isSignup ? "Have an existing account?" : "Create new account?",
+                foregroundColor: isSignup ? .mint : .blue,
+                backgroundColor: .clear
+            ) {
                 isSignup.toggle()
-            }) {
-                Text( isSignup ? "Have an existing account?" : "Create new account?")
-                    .fontWeight(.bold)
-                    .foregroundColor(isSignup ? .mint : .blue)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
             }
         }
         .onChange(of: viewModel.username) { resetError() }

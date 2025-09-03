@@ -11,7 +11,7 @@ struct HomeView: View {
     @Environment(UserSession.self) private var userSession
 
     @State private var viewModel: HomeViewModel = Model()
-    @State private var isDeleting: Bool = true
+    @State private var isDeleting: Bool = false
     @State private var showPassword: Bool = false
 
     var content: String {
@@ -53,7 +53,11 @@ struct HomeView: View {
 
             Spacer()
 
-            Button(action: {
+            BasicButtonView(
+                text: firstButtonTitle,
+                foregroundColor: .white,
+                backgroundColor: Color(uiColor: .lightGray)
+            ) {
                 if isDeleting {
                     viewModel.user = nil
                     viewModel.password = ""
@@ -62,30 +66,16 @@ struct HomeView: View {
                 } else {
                     userSession.logout()
                 }
-            }) {
-                Text(firstButtonTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(Color(uiColor: .lightGray))
             }
             .cornerRadius(10)
 
-            Button(action: {
+            BasicButtonView(text: "Leave forever", foregroundColor: .white, backgroundColor: .pink) {
                 if isDeleting {
                     guard !viewModel.password.isEmpty else { return }
                     deleteUser()
                 } else {
                     isDeleting.toggle()
                 }
-            }) {
-                Text("Leave forever")
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(.pink)
             }
             .cornerRadius(10)
         }
