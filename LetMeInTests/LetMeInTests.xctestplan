@@ -9,7 +9,16 @@
     }
   ],
   "defaultOptions" : {
-
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:LetMeIn.xcodeproj",
+          "identifier" : "EF6C191A2D48E74300ED61D4",
+          "name" : "LetMeIn"
+        }
+      ]
+    },
+    "testExecutionOrdering" : "random"
   },
   "testTargets" : [
     {
