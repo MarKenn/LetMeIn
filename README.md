@@ -1,5 +1,7 @@
 # Let Me In
 
+[![CI](https://github.com/MarKenn/LetMeIn/actions/workflows/CI.yml/badge.svg)](https://github.com/MarKenn/LetMeIn/actions/workflows/CI.yml)
+
 ## LET ME IN!!!
 
 This is a simple login app to showcase some basic skills in native iOS development. 
