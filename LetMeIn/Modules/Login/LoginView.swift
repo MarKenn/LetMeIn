@@ -36,13 +36,7 @@ struct LoginView: View {
             VStack {
                 usernameFieldView
 
-                PasswordFieldView(text: $viewModel.password)
-
-                if let error = viewModel.error {
-                    Text("\(error.localizedDescription)")
-                        .foregroundStyle(.red)
-                        .padding(.vertical, 10)
-                }
+                PasswordFieldView(text: $viewModel.password, error: viewModel.error)
 
                 BasicButtonView(
                     text: mainBtnTitle,

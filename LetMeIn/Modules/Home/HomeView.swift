@@ -38,13 +38,7 @@ struct HomeView: View {
             .multilineTextAlignment(.center)
 
             if isDeleting {
-                PasswordFieldView(text: $viewModel.password)
-
-                if let error = viewModel.error {
-                    Text("\(error.localizedDescription)")
-                        .foregroundStyle(.red)
-                        .padding(.vertical, 10)
-                }
+                PasswordFieldView(text: $viewModel.password, error: viewModel.error)
             }
 
             Spacer()
