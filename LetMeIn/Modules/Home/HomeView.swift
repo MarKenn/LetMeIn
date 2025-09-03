@@ -12,7 +12,6 @@ struct HomeView: View {
 
     @State private var viewModel: HomeViewModel = Model()
     @State private var isDeleting: Bool = false
-    @State private var showPassword: Bool = false
 
     var content: String {
         isDeleting
@@ -61,7 +60,7 @@ struct HomeView: View {
                 if isDeleting {
                     viewModel.user = nil
                     viewModel.password = ""
-                    resetError()
+                    viewModel.resetError()
                     isDeleting.toggle()
                 } else {
                     userSession.logout()
@@ -80,16 +79,11 @@ struct HomeView: View {
             .cornerRadius(10)
         }
         .padding()
-        .onChange(of: viewModel.password) { resetError() }
+        .onChange(of: viewModel.password) { viewModel.resetError() }
     }
 }
 
 extension HomeView {
-    func resetError() {
-        guard viewModel.error != nil else { return }
-        viewModel.error = nil
-    }
-
     func deleteUser() {
         Task {
             viewModel.user = userSession.user

@@ -11,9 +11,10 @@ protocol HomeViewModel {
     var repository: HomeRepository { get set }
     var user: AuthenticatedUser? { get set }
     var password: String { get set }
-    var error: Error? { get set }
+    var error: Error? { get }
 
     func deleteAccount() async -> Bool
+    func resetError()
 }
 
 extension HomeView {
@@ -23,7 +24,7 @@ extension HomeView {
 
         var user: AuthenticatedUser?
         var password: String = ""
-        var error: Error?
+        private(set) var error: Error?
 
         init(repository: HomeRepository =  InFileHomeRepository()) {
             self.repository = repository
@@ -41,6 +42,10 @@ extension HomeView {
                 self.error = error
                 return false
             }
+        }
+
+        func resetError() {
+            error = nil
         }
     }
 }

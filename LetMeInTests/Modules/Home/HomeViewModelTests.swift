@@ -68,4 +68,16 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssert((viewModel.error as? MockError) == .mockHomeRepository)
         XCTAssertFalse(success)
     }
+
+    func test_resetError_setsErrorToNil() async {
+        viewModel.user = testAuthenticatedUser
+        viewModel.password = testPassword
+        mockRepository.shouldSucceed = false
+        _ = await viewModel.deleteAccount()
+        XCTAssertNotNil(viewModel.error)
+
+        viewModel.resetError()
+
+        XCTAssertNil(viewModel.error)
+    }
 }

@@ -11,12 +11,13 @@ protocol LoginViewModel {
     var repository: AuthenticationRepository { get set }
     var username: String { get set }
     var password: String { get set }
-    var error: Error? { get set }
+    var error: Error? { get }
 
     var didLogin: ((AuthenticatedUser) -> Void)? { get set }
 
     func register() async
     func login() async
+    func resetError()
 }
 
 extension LoginView {
@@ -27,7 +28,7 @@ extension LoginView {
         var username: String = ""
         var password: String = ""
         var didLogin: ((AuthenticatedUser) -> Void)?
-        var error: Error?
+        private(set) var error: Error?
 
         init(repository: AuthenticationRepository =  InFileAuthenticationRepository()) {
             self.repository = repository
@@ -54,6 +55,10 @@ extension LoginView {
             case .failure(let error):
                 self.error = error
             }
+        }
+
+        func resetError() {
+            error = nil
         }
     }
 

@@ -84,4 +84,13 @@ final class LoginViewModelTests: XCTestCase {
         XCTAssert(viewModel.error is MockError)
         XCTAssert((viewModel.error as? MockError) == .mockAuthenticationRepository)
     }
+
+    func test_resetError_setsErrorToNil() {
+        viewModel.handleResponse(.failure(MockError.mockAuthenticationRepository))
+        XCTAssertNotNil(viewModel.error)
+
+        viewModel.resetError()
+
+        XCTAssertNil(viewModel.error)
+    }
 }
