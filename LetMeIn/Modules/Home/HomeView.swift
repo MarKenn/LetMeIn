@@ -28,40 +28,38 @@ struct HomeView: View {
             Spacer()
 
             Group {
-                Group {
-                    if isDeleting {
-                        Text("YOU ARE DELETING YOUR ACCOUNT.\nTHIS CANNOT BE UNDONE.")
-                            .fontWeight(.bold)
-                            .foregroundStyle(.pink)
-                    }
-                    Text(content)
-                }
-                .multilineTextAlignment(.center)
-
-
                 if isDeleting {
-                    PasswordFieldView(text: $viewModel.password)
+                    Text("YOU ARE DELETING YOUR ACCOUNT.\nTHIS CANNOT BE UNDONE.")
+                        .fontWeight(.bold)
+                        .foregroundStyle(.pink)
+                }
+                Text(content)
+            }
+            .multilineTextAlignment(.center)
 
-                    if let error = viewModel.error {
-                        Text("\(error.localizedDescription)")
-                            .foregroundStyle(.red)
-                            .padding(.vertical, 10)
-                    }
+            if isDeleting {
+                PasswordFieldView(text: $viewModel.password)
+
+                if let error = viewModel.error {
+                    Text("\(error.localizedDescription)")
+                        .foregroundStyle(.red)
+                        .padding(.vertical, 10)
                 }
             }
 
             Spacer()
 
-            BasicButtonView(
-                text: firstButtonTitle,
-                foregroundColor: .white,
-                backgroundColor: Color(uiColor: .lightGray),
-                action: logoutAction
-            )
-            .cornerRadius(10)
+            Group {
+                BasicButtonView(
+                    text: firstButtonTitle,
+                    foregroundColor: .white,
+                    backgroundColor: Color(uiColor: .lightGray),
+                    action: logoutAction
+                )
 
-            BasicButtonView(text: "Leave forever", foregroundColor: .white, backgroundColor: .pink) {
-                deleteAccountAction()
+                BasicButtonView(text: "Leave forever", foregroundColor: .white, backgroundColor: .pink) {
+                    deleteAccountAction()
+                }
             }
             .cornerRadius(10)
         }
