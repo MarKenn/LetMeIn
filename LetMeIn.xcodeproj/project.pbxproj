@@ -65,6 +65,7 @@
 		EFA43A162D495D9D0013D7A3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		EFA43A1A2D4963060013D7A3 /* MockAPIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIUser.swift; sourceTree = "<group>"; };
 		EFA43A1C2D4966000013D7A3 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
+		EFBDFC7B2E688C710083C375 /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI.xctestplan; sourceTree = "<group>"; };
 		EFBDFC742E684D600083C375 /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
 		EFBDFC762E685C060083C375 /* BasicButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButtonView.swift; sourceTree = "<group>"; };
 		EFF8A54E2D4A09640027D59B /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 		EF6C19122D48E74300ED61D4 = {
 			isa = PBXGroup;
 			children = (
+				EFBDFC7B2E688C710083C375 /* CI.xctestplan */,
 				EF6C194D2D48E7AA00ED61D4 /* LetMeIn */,
 				EF6C19532D48E7B300ED61D4 /* LetMeInTests */,
 				EF6C191C2D48E74300ED61D4 /* Products */,
