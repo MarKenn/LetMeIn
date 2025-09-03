@@ -55,16 +55,9 @@ struct HomeView: View {
             BasicButtonView(
                 text: firstButtonTitle,
                 foregroundColor: .white,
-                backgroundColor: Color(uiColor: .lightGray)
-            ) {
-                if isDeleting {
-                    viewModel.password = ""
-                    viewModel.resetError()
-                    isDeleting.toggle()
-                } else {
-                    userSession.logout()
-                }
-            }
+                backgroundColor: Color(uiColor: .lightGray),
+                action: logoutAction
+            )
             .cornerRadius(10)
 
             BasicButtonView(text: "Leave forever", foregroundColor: .white, backgroundColor: .pink) {
@@ -78,6 +71,18 @@ struct HomeView: View {
 }
 
 extension HomeView {
+    func logoutAction() {
+        guard isDeleting else { return userSession.logout() }
+
+        cancelAccountDeletion()
+    }
+
+    func cancelAccountDeletion() {
+        viewModel.password = ""
+        viewModel.resetError()
+        isDeleting = false
+    }
+
     func deleteAccountAction() {
         guard isDeleting else { return isDeleting.toggle() }
 
