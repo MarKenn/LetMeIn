@@ -14,6 +14,7 @@ protocol HomeViewModel {
 
     func delete(user: AuthenticatedUser) async -> Bool
     func resetError()
+    func resetAccountDeletion()
 }
 
 extension HomeView {
@@ -44,6 +45,11 @@ extension HomeView {
 
         func resetError() {
             error = nil
+        }
+
+        func resetAccountDeletion() {
+            password = ""
+            resetError()
         }
     }
 }

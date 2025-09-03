@@ -73,4 +73,17 @@ final class HomeViewModelTests: XCTestCase {
 
         XCTAssertNil(viewModel.error)
     }
+
+    func test_resetAccountDeletion_setsErrorAndPasswordToNil() async {
+        viewModel.password = testPassword
+        mockRepository.shouldSucceed = false
+        _ = await viewModel.delete(user: testAuthenticatedUser)
+        XCTAssertNotNil(viewModel.error)
+        XCTAssertFalse(viewModel.password.isEmpty)
+
+        viewModel.resetAccountDeletion()
+
+        XCTAssertNil(viewModel.error)
+        XCTAssert(viewModel.password.isEmpty)
+    }
 }

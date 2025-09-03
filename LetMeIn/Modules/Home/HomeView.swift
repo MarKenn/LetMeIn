@@ -66,12 +66,11 @@ extension HomeView {
     func logoutAction() {
         guard isDeleting else { return userSession.logout() }
 
-        cancelAccountDeletion()
+        resetAccountDeletion()
     }
 
-    func cancelAccountDeletion() {
-        viewModel.password = ""
-        viewModel.resetError()
+    func resetAccountDeletion() {
+        viewModel.resetAccountDeletion()
         isDeleting = false
     }
 
