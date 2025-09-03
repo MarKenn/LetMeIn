@@ -11,9 +11,8 @@ protocol LoginViewModel {
     var repository: AuthenticationRepository { get set }
     var username: String { get set }
     var password: String { get set }
+    var authenticatedUser: AuthenticatedUser? { get }
     var error: Error? { get }
-
-    var didLogin: ((AuthenticatedUser) -> Void)? { get set }
 
     func register() async
     func login() async
@@ -27,7 +26,7 @@ extension LoginView {
 
         var username: String = ""
         var password: String = ""
-        var didLogin: ((AuthenticatedUser) -> Void)?
+        var authenticatedUser: AuthenticatedUser?
         private(set) var error: Error?
 
         init(repository: AuthenticationRepository =  InFileAuthenticationRepository()) {
@@ -47,11 +46,7 @@ extension LoginView {
         func handleResponse(_ response: Result<AuthenticatedUser, Error>) {
             switch response {
             case .success(let authenticatedUser):
-                guard let didLogin else {
-                    self.error = LoginViewError.didLoginClosureMissing
-                    return
-                }
-                didLogin(authenticatedUser)
+                self.authenticatedUser = authenticatedUser
             case .failure(let error):
                 self.error = error
             }
@@ -59,16 +54,6 @@ extension LoginView {
 
         func resetError() {
             error = nil
-        }
-    }
-
-    enum LoginViewError: Error, LocalizedError {
-        case didLoginClosureMissing
-
-        public var errorDescription: String? {
-            switch self {
-            case .didLoginClosureMissing: "Missing closure didLogin: ((AuthenticatedUser) -> Void)?"
-            }
         }
     }
 }

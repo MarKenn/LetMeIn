@@ -58,12 +58,8 @@ struct LoginView: View {
         .onChange(of: viewModel.username) { viewModel.resetError() }
         .onChange(of: viewModel.password) { viewModel.resetError() }
         .onChange(of: isSignup) { viewModel.resetError() }
-        .onAppear {
-            viewModel.didLogin = { authenticatedUser in
-
-                hideKeyBoard()
-                self.userSession.login(authenticatedUser)
-            }
+        .onChange(of: viewModel.authenticatedUser) { _, authenticatedUser in
+            didLogin(authenticatedUser)
         }
     }
 }
@@ -73,6 +69,13 @@ extension LoginView {
         Task {
             await isSignup ? viewModel.register() : viewModel.login()
         }
+    }
+
+    func didLogin(_ user: AuthenticatedUser?) {
+        guard let user else { return }
+
+        hideKeyBoard()
+        self.userSession.login(user)
     }
 }
 
