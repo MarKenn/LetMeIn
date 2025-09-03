@@ -58,7 +58,6 @@ struct HomeView: View {
                 backgroundColor: Color(uiColor: .lightGray)
             ) {
                 if isDeleting {
-                    viewModel.user = nil
                     viewModel.password = ""
                     viewModel.resetError()
                     isDeleting.toggle()
@@ -69,12 +68,7 @@ struct HomeView: View {
             .cornerRadius(10)
 
             BasicButtonView(text: "Leave forever", foregroundColor: .white, backgroundColor: .pink) {
-                if isDeleting {
-                    guard !viewModel.password.isEmpty else { return }
-                    deleteUser()
-                } else {
-                    isDeleting.toggle()
-                }
+                deleteAccountAction()
             }
             .cornerRadius(10)
         }
@@ -84,10 +78,11 @@ struct HomeView: View {
 }
 
 extension HomeView {
-    func deleteUser() {
+    func deleteAccountAction() {
+        guard isDeleting else { return isDeleting.toggle() }
+
         Task {
-            viewModel.user = userSession.user
-            if await viewModel.deleteAccount() {
+            if let user = userSession.user, await viewModel.delete(user: user) {
                 userSession.logout()
             }
         }

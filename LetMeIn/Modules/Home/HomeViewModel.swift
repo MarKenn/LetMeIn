@@ -9,11 +9,10 @@ import Foundation
 
 protocol HomeViewModel {
     var repository: HomeRepository { get set }
-    var user: AuthenticatedUser? { get set }
     var password: String { get set }
     var error: Error? { get }
 
-    func deleteAccount() async -> Bool
+    func delete(user: AuthenticatedUser) async -> Bool
     func resetError()
 }
 
@@ -22,7 +21,6 @@ extension HomeView {
     class Model: HomeViewModel {
         var repository: HomeRepository
 
-        var user: AuthenticatedUser?
         var password: String = ""
         private(set) var error: Error?
 
@@ -30,8 +28,8 @@ extension HomeView {
             self.repository = repository
         }
 
-        func deleteAccount() async -> Bool {
-            guard let user = user, !password.isEmpty else { return false }
+        func delete(user: AuthenticatedUser) async -> Bool {
+            guard !password.isEmpty else { return false }
 
             let response = await repository.delete(user, password: password)
 
