@@ -12,7 +12,6 @@ struct HomeView: View {
 
     @State private var viewModel: HomeViewModel = Model()
     @State private var isDeleting: Bool = false
-    @State private var showPassword: Bool = false
 
     var content: String {
         isDeleting
@@ -29,105 +28,57 @@ struct HomeView: View {
             Spacer()
 
             Group {
-                Group {
-                    if isDeleting {
-                        Text("YOU ARE DELETING YOUR ACCOUNT.\nTHIS CANNOT BE UNDONE.")
-                            .fontWeight(.bold)
-                            .foregroundStyle(.pink)
-                    }
-                    Text(content)
-                }
-                .multilineTextAlignment(.center)
-
-
                 if isDeleting {
-                    Group {
-                        HStack {
-                            Image(systemName: "lock")
-                                .foregroundColor(.gray)
-
-                            Group {
-                                if showPassword {
-                                    TextField("Enter password", text: $viewModel.password)
-                                } else {
-                                    SecureField("Enter password", text: $viewModel.password)
-                                }
-                            }
-                            .padding(.leading, 5)
-
-                            Button(
-                                action: { showPassword.toggle() },
-                                label: {
-                                    Image(systemName: showPassword ? "eye.slash" : "eye.fill")
-                                        .foregroundColor(.gray)
-                                }
-                            )
-                        }
-                    }
-                    .padding()
-                    .background(Color(.systemGray6))
-
-                    if let error = viewModel.error {
-                        Text("\(error.localizedDescription)")
-                            .foregroundStyle(.red)
-                            .padding(.vertical, 10)
-                    }
+                    Text("YOU ARE DELETING YOUR ACCOUNT.\nTHIS CANNOT BE UNDONE.")
+                        .fontWeight(.bold)
+                        .foregroundStyle(.pink)
                 }
+                Text(content)
+            }
+            .multilineTextAlignment(.center)
+
+            if isDeleting {
+                PasswordFieldView(text: $viewModel.password, error: viewModel.error)
             }
 
             Spacer()
 
-            Button(action: {
-                if isDeleting {
-                    viewModel.user = nil
-                    viewModel.password = ""
-                    resetError()
-                    isDeleting.toggle()
-                } else {
-                    userSession.logout()
-                }
-            }) {
-                Text(firstButtonTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(Color(uiColor: .lightGray))
-            }
-            .cornerRadius(10)
+            Group {
+                BasicButtonView(
+                    text: firstButtonTitle,
+                    foregroundColor: .white,
+                    backgroundColor: Color(uiColor: .lightGray),
+                    action: logoutAction
+                )
 
-            Button(action: {
-                if isDeleting {
-                    guard !viewModel.password.isEmpty else { return }
-                    deleteUser()
-                } else {
-                    isDeleting.toggle()
+                BasicButtonView(text: "Leave forever", foregroundColor: .white, backgroundColor: .pink) {
+                    deleteAccountAction()
                 }
-            }) {
-                Text("Leave forever")
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(.pink)
             }
             .cornerRadius(10)
         }
         .padding()
-        .onChange(of: viewModel.password) { resetError() }
+        .onChange(of: viewModel.password) { viewModel.resetError() }
     }
 }
 
 extension HomeView {
-    func resetError() {
-        guard viewModel.error != nil else { return }
-        viewModel.error = nil
+    func logoutAction() {
+        guard isDeleting else { return userSession.logout() }
+
+        resetAccountDeletion()
     }
 
-    func deleteUser() {
+    func resetAccountDeletion() {
+        viewModel.resetAccountDeletion()
+        isDeleting = false
+    }
+
+    func deleteAccountAction() {
+        guard isDeleting else { return isDeleting.toggle() }
+
         Task {
-            viewModel.user = userSession.user
-            if await viewModel.deleteAccount() {
+            if let user = userSession.user, await viewModel.delete(user: user) {
                 userSession.logout()
             }
         }

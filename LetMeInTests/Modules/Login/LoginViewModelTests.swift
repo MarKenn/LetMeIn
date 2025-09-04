@@ -22,7 +22,7 @@ final class LoginViewModelTests: XCTestCase {
     func testInitialState() {
         XCTAssert(viewModel.username.isEmpty)
         XCTAssert(viewModel.password.isEmpty)
-        XCTAssertNil(viewModel.didLogin)
+        XCTAssertNil(viewModel.authenticatedUser)
         XCTAssertNil(viewModel.error)
         XCTAssert(viewModel.repository is MockAuthenticationRepository)
     }
@@ -43,36 +43,14 @@ final class LoginViewModelTests: XCTestCase {
         XCTAssert(mockRepository.didCallLogin)
     }
 
-    func testHandleResponseDidLoginClosureMissing() {
-        XCTAssertNil(viewModel.didLogin)
-        XCTAssertNil(viewModel.error)
-
-        viewModel.handleResponse(.success(testAuthenticatedUser))
-
-        XCTAssertNil(viewModel.didLogin)
-        XCTAssertNotNil(viewModel.error)
-        XCTAssertEqual(viewModel.error?.localizedDescription,
-                       LoginView.LoginViewError.didLoginClosureMissing.localizedDescription)
-    }
-
     func testHandleResponseSuccess() {
-        XCTAssertNil(viewModel.didLogin)
-
-        var didLoginClosureCalled = false
-        var authenticatedUserResponse: AuthenticatedUser?
-
-        viewModel.didLogin = { authenticatedUser in
-            didLoginClosureCalled = true
-            authenticatedUserResponse = authenticatedUser
-        }
+        XCTAssertNil(viewModel.authenticatedUser)
 
         viewModel.handleResponse(.success(testAuthenticatedUser))
 
         XCTAssertNil(viewModel.error)
-        XCTAssert(didLoginClosureCalled)
-        XCTAssertNotNil(authenticatedUserResponse)
-        XCTAssertEqual(authenticatedUserResponse?.username, testAuthenticatedUser.username)
-        XCTAssertEqual(authenticatedUserResponse?.token, testAuthenticatedUser.token)
+        XCTAssertEqual(viewModel.authenticatedUser?.username, testAuthenticatedUser.username)
+        XCTAssertEqual(viewModel.authenticatedUser?.token, testAuthenticatedUser.token)
     }
 
     func testHandleResponseFail() {
@@ -83,5 +61,14 @@ final class LoginViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModel.error)
         XCTAssert(viewModel.error is MockError)
         XCTAssert((viewModel.error as? MockError) == .mockAuthenticationRepository)
+    }
+
+    func test_resetError_setsErrorToNil() {
+        viewModel.handleResponse(.failure(MockError.mockAuthenticationRepository))
+        XCTAssertNotNil(viewModel.error)
+
+        viewModel.resetError()
+
+        XCTAssertNil(viewModel.error)
     }
 }

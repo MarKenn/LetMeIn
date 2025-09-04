@@ -12,6 +12,7 @@ class MockUserDataProvider: UserDataProvider {
     var didCallLogin = false
     var didCallDelete = false
     var shouldSucceed: Bool = true
+    var deleteSuccessValue: Bool = true
 
     func login(_ username: String, password: String) async -> Result<AuthenticatedUser, Error> {
         didCallLogin = true
@@ -33,7 +34,7 @@ class MockUserDataProvider: UserDataProvider {
         didCallDelete = true
 
         return shouldSucceed
-        ? .success(true)
+        ? .success(deleteSuccessValue)
         : .failure(MockError.mockUserDataProvider)
     }
 }

@@ -12,8 +12,8 @@ final class InFileAuthenticationRepositoryTests: XCTestCase {
     var repository: InFileAuthenticationRepository!
 
     var mockDataProvider = MockUserDataProvider()
-    var testUsername = "testUsername"
-    var testPassword = "testPassword"
+    var testUser = AuthenticatedUser(token: "testPassword", username: "testUsername")
+    var testFailure = AuthenticationRepository.Result.failure(MockError.mockUserDataProvider)
 
     override func setUp() {
         mockDataProvider = MockUserDataProvider()
@@ -27,58 +27,58 @@ final class InFileAuthenticationRepositoryTests: XCTestCase {
     func testLoginSuccess() async {
         XCTAssertFalse(mockDataProvider.didCallLogin)
 
-        let result = await repository.login(testUsername, password: testPassword)
+        let result = await repository.login(testUser.username, password: testUser.token)
 
-        XCTAssert(mockDataProvider.didCallLogin)
-        if case let .success(value) = result {
-            XCTAssertEqual(value.username, testUsername)
-            XCTAssertEqual(value.token, testPassword)
-        } else {
-            XCTAssert(false, "Expecting .success(AuthenticatedUser) but got .failure(Error) instead")
-        }
+        expect(toCall: mockDataProvider.didCallLogin, withResult: result, toBe: .success(testUser))
     }
 
     func testLoginFail() async {
         XCTAssertFalse(mockDataProvider.didCallLogin)
 
         mockDataProvider.shouldSucceed = false
-        let result = await repository.login(testUsername, password: testPassword)
+        let result = await repository.login(testUser.username, password: testUser.token)
 
-        XCTAssert(mockDataProvider.didCallLogin)
-        if case let .failure(error) = result {
-            XCTAssert(error is MockError)
-            XCTAssert((error as? MockError) == .mockUserDataProvider)
-        } else {
-            XCTAssert(false, "Expecting .failure(Error) but got .success(AuthenticatedUser) instead")
-        }
+        expect(toCall: mockDataProvider.didCallLogin, withResult: result, toBe: testFailure)
     }
 
     func testRegisterSuccess() async {
         XCTAssertFalse(mockDataProvider.didCallRegister)
 
-        let result = await repository.register(testUsername, password: testPassword)
+        let result = await repository.register(testUser.username, password: testUser.token)
 
-        XCTAssert(mockDataProvider.didCallRegister)
-        if case let .success(value) = result {
-            XCTAssertEqual(value.username, testUsername)
-            XCTAssertEqual(value.token, testPassword)
-        } else {
-            XCTAssert(false, "Expecting .success(AuthenticatedUser) but got .failure(Error) instead")
-        }
+        expect(toCall: mockDataProvider.didCallRegister, withResult: result, toBe: .success(testUser))
     }
 
     func testRegisterFail() async {
         XCTAssertFalse(mockDataProvider.didCallRegister)
 
         mockDataProvider.shouldSucceed = false
-        let result = await repository.register(testUsername, password: testPassword)
+        let result = await repository.register(testUser.username, password: testUser.token)
 
-        XCTAssert(mockDataProvider.didCallRegister)
-        if case let .failure(error) = result {
-            XCTAssert(error is MockError)
-            XCTAssert((error as? MockError) == .mockUserDataProvider)
-        } else {
-            XCTAssert(false, "Expecting .failure(Error) but got .success(AuthenticatedUser) instead")
+        expect(toCall: mockDataProvider.didCallRegister, withResult: result, toBe: testFailure)
+    }
+
+    // MARK: - Helpers
+
+    func expect(
+        toCall didCall: Bool,
+        withResult receivedResult: AuthenticationRepository.Result,
+        toBe expectedResult: AuthenticationRepository.Result,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        XCTAssert(didCall, file: file, line: line)
+
+        switch (receivedResult, expectedResult) {
+        case let (.success(receivedUser), .success(expectedUser)):
+            XCTAssertEqual(receivedUser.username, expectedUser.username, file: file, line: line)
+            XCTAssertEqual(receivedUser.token, expectedUser.token, file: file, line: line)
+        case let (.failure(receivedError as MockError), .failure(expectedError as MockError)):
+            XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+        default:
+            XCTFail(
+                "Expecting \(expectedResult), got \(receivedResult) instead", file: file, line: line
+            )
         }
     }
 }
